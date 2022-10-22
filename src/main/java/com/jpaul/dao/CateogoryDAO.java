@@ -4,10 +4,9 @@ import com.jpaul.model.Category;
 
 import java.util.List;
 
-public class CateogoryDAO implements IDAOCategory {
+public class CateogoryDAO extends DAO implements IDAOCategory {
 
     public Category create(Category o) throws Exception {
-        return null;
     }
 
     public List<Category> read() throws Exception {
