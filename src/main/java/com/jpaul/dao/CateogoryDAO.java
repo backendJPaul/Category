@@ -1,5 +1,32 @@
 package com.jpaul.dao;
 
-public class CateogoryDAO implements IDAO {
+import com.jpaul.model.Category;
 
+import java.util.List;
+
+public class CateogoryDAO implements IDAOCategory {
+
+    public Category create(Category o) throws Exception {
+        return null;
+    }
+
+    public List<Category> read() throws Exception {
+        return null;
+    }
+
+    public Category update(Category o) throws Exception {
+        return null;
+    }
+
+    public Category delete(Category o) throws Exception {
+        return null;
+    }
+
+    public List<Category> search(String pattern) throws Exception {
+        return null;
+    }
+
+    public Category gotoId(Category o) throws Exception {
+        return null;
+    }
 }
