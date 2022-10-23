@@ -19,6 +19,7 @@ public class DAO {
     protected void connectDatabase() throws Exception {
         try{
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbcategory","admin","root");
+            System.out.println("connected");
         }
         catch(SQLException e){
             throw new Exception(e.toString());
@@ -43,16 +44,8 @@ public class DAO {
         }
     }
 
-    protected ArrayList<Category> executeQuery(CallableStatement callableStatement)throws SQLException{
+    protected ResultSet executeQuery(CallableStatement callableStatement)throws SQLException{
         this.callableStatement = callableStatement;
-        ResultSet resultSet = callableStatement.executeQuery();
-        ArrayList<Category> categories = new ArrayList<Category>();
-        while(resultSet.next()){
-            Category category = new Category();
-            category.setIdCategory(resultSet.getInt("idCategory"));
-            category.setName(resultSet.getString("name"));
-            categories.add(category);
-        }
-        return categories;
+        return callableStatement.executeQuery();
     }
 }

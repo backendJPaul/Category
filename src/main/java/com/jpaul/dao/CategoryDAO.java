@@ -4,6 +4,7 @@ import com.jpaul.model.Category;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryDAO extends DAO implements IDAOCategory {
@@ -14,10 +15,19 @@ public class CategoryDAO extends DAO implements IDAOCategory {
     }
 
     public List<Category> read() throws Exception {
-        CallableStatement callableStatement this.co
-        this.executeQuery();
+        this.connectDatabase();
 
-        return null;
+        CallableStatement callableStatement = this.connection.prepareCall("call stpRCategory");
+        this.resultSet = this.executeQuery(callableStatement);
+
+        ArrayList<Category> categories = new ArrayList<Category>();
+        while(resultSet.next()){
+            Category category = new Category();
+            category.setIdCategory(resultSet.getInt("idCategory"));
+            category.setName(resultSet.getString("name"));
+            categories.add(category);
+        }
+        return categories;
     }
 
     public Category update(Category o) throws Exception {

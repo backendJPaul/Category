@@ -11,18 +11,8 @@ import java.sql.ResultSet;
 
 public class App{
     public static void main(String args[]) throws Exception {
-
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbcategory","admin","root");
-        CallableStatement callableStatement = connection.prepareCall("call stpCCategory(?)");
-        callableStatement.setString(1,"cellphones");
-        /*prepare sentence*/
-        callableStatement.executeQuery();
-        ResultSet resultSet = callableStatement.getResultSet();
-
-        while(resultSet.next()){
-            System.out.println(resultSet.getString("idCategory"));
-            System.out.println(resultSet.getString("name"));
-        }
+        CategoryDAO categoryDAO = new CategoryDAO();
+        System.out.println(categoryDAO.read().toString());
 
 
     }
