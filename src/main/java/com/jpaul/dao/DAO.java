@@ -1,18 +1,22 @@
 package com.jpaul.dao;
 
+import com.jpaul.model.Category;
+
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DAO {
     protected Connection connection;
-    protected Statement statement;
+    protected CallableStatement callableStatement;
     protected ResultSet resultSet;
+
 
     private final String user = "admin";
     private final String pass = "root";
     private final String database = "dbcategory";
 
     //TODO change to protected
-    public void connectDatabase() throws Exception {
+    protected void connectDatabase() throws Exception {
         try{
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbcategory","admin","root");
         }
@@ -21,14 +25,14 @@ public class DAO {
         }
 
     }
-    //TODO change to protected
-    public void disconnectDatabase()throws Exception{
+
+    protected void disconnectDatabase()throws Exception{
         try{
             if(resultSet != null){
                 resultSet.close();
             }
-            if(statement != null){
-                statement.close();
+            if(callableStatement != null){
+                callableStatement.close();
             }
             if(connection != null){
                 connection.close();
@@ -37,5 +41,18 @@ public class DAO {
         catch(SQLException e){
             throw new Exception(e.toString());
         }
+    }
+
+    protected ArrayList<Category> executeQuery(CallableStatement callableStatement)throws SQLException{
+        this.callableStatement = callableStatement;
+        ResultSet resultSet = callableStatement.executeQuery();
+        ArrayList<Category> categories = new ArrayList<Category>();
+        while(resultSet.next()){
+            Category category = new Category();
+            category.setIdCategory(resultSet.getInt("idCategory"));
+            category.setName(resultSet.getString("name"));
+            categories.add(category);
+        }
+        return categories;
     }
 }

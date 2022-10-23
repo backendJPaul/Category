@@ -2,11 +2,15 @@ package com.jpaul.dao;
 
 import com.jpaul.model.Category;
 
+import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.util.List;
 
-public class CateogoryDAO extends DAO implements IDAOCategory {
+public class CategoryDAO extends DAO implements IDAOCategory {
 
     public Category create(Category o) throws Exception {
+
+        return null;
     }
 
     public List<Category> read() throws Exception {
