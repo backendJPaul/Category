@@ -14,6 +14,9 @@ public class CategoryDAO extends DAO implements IDAOCategory {
     }
 
     public List<Category> read() throws Exception {
+        CallableStatement callableStatement this.co
+        this.executeQuery();
+
         return null;
     }
 
