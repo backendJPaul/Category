@@ -19,7 +19,6 @@ public class DAO {
     protected void connectDatabase() throws Exception {
         try{
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbcategory","admin","root");
-            System.out.println("connected");
         }
         catch(SQLException e){
             throw new Exception(e.toString());
